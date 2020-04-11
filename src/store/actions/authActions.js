@@ -18,6 +18,7 @@ export const logout = () => {
     const firebase = getFirebase();
 
     firebase.auth().signOut().then(() => {
+      firebase.logout()
       dispatch({ type: 'LOGOUT_SUCCESS' })
     });
   }
