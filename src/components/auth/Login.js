@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import { login } from '../../store/actions/authActions'
 
 class Login extends Component {
@@ -23,9 +22,6 @@ class Login extends Component {
   render() {
     const { authError, auth } = this.props;
 
-    // Redirect to dashboard if logged in
-    // if (auth.uid) return <Redirect to='/' />
-    
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
