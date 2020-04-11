@@ -17,7 +17,12 @@ function AuthIsLoaded({ children }) {
   return children
 }
 
-const rrfConfig = { userProfile: 'businesses' }
+const rrfConfig = {
+  userProfile: 'businesses',
+  useFirestoreForProfile: true,
+  attachAuthIsReady: true,
+}
+
 const rrfProps = {
   firebase,
   config: rrfConfig,
