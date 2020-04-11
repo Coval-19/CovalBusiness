@@ -1,20 +1,38 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Dashboard from './components/dashboard/Dashboard'
+import Login from './components/auth/Login'
+import Registration from './components/auth/Registration'
 
-function App() {
+function App({ auth }) {
+
+  const pagesSwitch = auth.uid ? (
+    <Switch>
+      <Route exact path='/' component={Dashboard} />
+    </Switch>
+  ) : (
+    <Switch>
+      <Route path='/login' component={Login} />
+      <Route path='/register' component={Registration} />
+      <Route path = '/' component={() => (<Redirect to='/login' />)} />
+    </Switch>
+  )
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Switch>
-          <Route exact path='/' component={Dashboard} />
-          <Route path='/login' component={Dashboard} />
-          <Route path='/register' component={Dashboard} />
-        </Switch>
+        {pagesSwitch}
       </div>
     </BrowserRouter>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+export default connect(mapStateToProps)(App);
