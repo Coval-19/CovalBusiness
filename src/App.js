@@ -1,10 +1,19 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Dashboard from './components/dashboard/Dashboard'
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path='/' component={Dashboard} />
+          <Route path='/login' component={Dashboard} />
+          <Route path='/register' component={Dashboard} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
