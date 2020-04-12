@@ -29,7 +29,7 @@ code {
   transform: translate(-50%, -50%);
 }
 
-form {
+form, .dashboard {
   border-radius: 20px;
   padding: 20px;
   margin-top: 20px;
