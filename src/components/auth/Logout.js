@@ -3,11 +3,13 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../store/actions/authActions'
 
+// TODO: remove this page!
+
 const Logout = ({logout}) => {
   logout()
 
   return (
-    <Redirect to='/' />
+    <div/>
   )
 }
 
