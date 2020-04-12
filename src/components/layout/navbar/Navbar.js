@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery'
 import M from "materialize-css";
 import { Link } from 'react-router-dom'
 import LoggedInLinks from './LoggedInLinks'
@@ -8,10 +9,17 @@ import { connect } from 'react-redux'
 class Navbar extends Component {
 
   componentDidMount(){
-    var elem = document.querySelectorAll(".sidenav");
+    var elem = $(".sidenav");
+
     M.Sidenav.init(elem, {
       edge: "left",
       inDuration: 250
+    });
+
+    var instance = M.Sidenav.getInstance(elem)
+
+    $('.sidenav a').click(function() {
+      instance.close();
     });
   }
 
@@ -24,7 +32,7 @@ class Navbar extends Component {
       <React.Fragment>
         <nav className="nav-wrapper grey darken-3">
           <div className="container">
-            <Link to='/' className="brand-logo">Coval Businesses</Link>
+            <Link to='/' className="brand-logo truncate">Coval Businesses</Link>
             <a data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <div className="right hide-on-med-and-down">
               <ul>
