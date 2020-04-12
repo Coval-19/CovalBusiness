@@ -8,7 +8,7 @@ const Dashboard = (props) => {
   console.log(props)
 
   return (
-    <div className="dashboard container white center">
+    <div className="dashboard container white center page-container">
       <h5 className="grey-text text-darken-3">Registeration Code</h5>
       <p>
         Please scan the QR code with your Coval Business App
