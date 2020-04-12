@@ -7,16 +7,14 @@ const LoggedInLinks = (props) => {
   const businessNameFirstLetter = props.profile.businessName?.[0]
 
   return (
-    <div>
-      <ul className="right">
-        <li><a onClick={props.logout}>Logout</a></li>
-        <li>
-          <NavLink to='/' className="btn btn-floating blue">
-            {businessNameFirstLetter}
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+    <React.Fragment>
+      <li><a onClick={props.logout}>Logout</a></li>
+      <li className="hide-on-med-and-down">
+        <NavLink to='/' className="btn btn-floating blue">
+          {businessNameFirstLetter}
+        </NavLink>
+      </li>
+    </React.Fragment>
   )
 }
 
