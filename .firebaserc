@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "coval-3c340"
+  },
+  "targets": {
+    "coval-3c340": {
+      "hosting": {
+        "coval-businesses": [
+          "coval-businesses"
+        ]
+      }
+    }
   }
 }
