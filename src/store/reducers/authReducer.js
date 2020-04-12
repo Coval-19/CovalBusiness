@@ -3,7 +3,7 @@ const initState = {
 }
 
 const authReducer = (state = initState, action) => {
-  switch(action.type){
+  switch(action.type) {
     case 'LOGIN_SUCCESS':
       console.log('login success');
       return {
@@ -12,10 +12,10 @@ const authReducer = (state = initState, action) => {
       }
 
     case 'LOGIN_ERROR':
-      console.log('login error');
+      console.log('login error', action.err);
       return {
         ...state,
-        authError: 'Login failed'
+        authError: action.err.message
       }
 
     case 'LOGOUT_SUCCESS':
@@ -30,7 +30,7 @@ const authReducer = (state = initState, action) => {
       }
 
     case 'REGISTRATION_ERROR':
-      console.log('registration error')
+      console.log('registration error', action.err)
       return {
         ...state,
         authError: action.err.message
