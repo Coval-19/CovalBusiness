@@ -18,7 +18,7 @@ class Navbar extends Component {
 
     var instance = M.Sidenav.getInstance(elem)
 
-    $('.sidenav a').click(function() {
+    $('.sidenav').click(function() {
       instance.close();
     });
   }
