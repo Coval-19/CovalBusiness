@@ -25,7 +25,7 @@ class Login extends Component {
     const { authError } = this.props;
 
     return (
-      <div className="container">
+      <div className="container center">
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Login</h5>
           <div className="input-field">

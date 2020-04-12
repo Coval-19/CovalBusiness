@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom'
 import LoggedInLinks from './LoggedInLinks'
 import LoggedOutLinks from './LoggedOutLinks'
 import { connect } from 'react-redux'
-import Styles from '../../style/Styles'
 
 class Navbar extends Component {
 
   componentDidMount(){
     var elem = document.querySelectorAll(".sidenav");
-    var instance = M.Sidenav.init(elem, {
+    M.Sidenav.init(elem, {
       edge: "left",
       inDuration: 250
     });
@@ -25,8 +24,8 @@ class Navbar extends Component {
       <React.Fragment>
         <nav className="nav-wrapper grey darken-3">
           <div className="container">
-            <Link to='/' className={Styles.navTitle}>Coval Businesses</Link>
-            <a href="#" data-target="mobile-links" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <Link to='/' className="brand-logo">Coval Businesses</Link>
+            <a data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <div className="right hide-on-med-and-down">
               <ul>
                 {links}

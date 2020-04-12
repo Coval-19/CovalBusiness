@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import AuthIsReady from './firebase/AuthIsReady'

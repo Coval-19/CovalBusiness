@@ -10,5 +10,4 @@ export const Button = makeStyledWrapper(<button />, "btn waves-effect waves-ligh
 export default {
   button: "btn waves-effect waves-light blue",
   error: "error-message center red-text",
-  navTitle: "app-nav-title brand-logo left",
 }
