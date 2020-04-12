@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import QR from './QR'
 
 const Dashboard = (props) => {
   console.log(props)
@@ -13,7 +12,6 @@ const Dashboard = (props) => {
       <p>
         Please scan the QR code with your Coval Business App
       </p>
-      <QR value={props.auth.uid} />
     </div>
   )
 }
