@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../../store/actions/authActions'
+import Styles from '../style/Styles'
 
 class Login extends Component {
   state = {
@@ -20,7 +21,7 @@ class Login extends Component {
   }
   
   render() {
-    const { authError, auth } = this.props;
+    const { authError } = this.props;
 
     return (
       <div className="container">
@@ -35,8 +36,8 @@ class Login extends Component {
             <input type="password" id='password' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Login</button>
-            <div className="center red-text">
+            <button className={Styles.button}>Login</button>
+            <div className={Styles.error}>
               { authError ? <p>{authError}</p> : null }
             </div>
           </div>

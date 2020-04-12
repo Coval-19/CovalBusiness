@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { register } from '../../store/actions/authActions'
+import Styles from '../style/Styles'
 
 class Registration extends Component {
   state = {
@@ -22,7 +23,7 @@ class Registration extends Component {
   }
 
   render() {
-    const { auth, authError } = this.props;
+    const { authError } = this.props;
 
     return (
       <div className="container">
@@ -45,8 +46,8 @@ class Registration extends Component {
             <input type="text" id='address' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Register</button>
-            <div className="center red-text">
+            <button className={Styles.button}>Register</button>
+            <div className={Styles.error}>
               { authError ? <p>{authError}</p> : null }
             </div>
           </div>
