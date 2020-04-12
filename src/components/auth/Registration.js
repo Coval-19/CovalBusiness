@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { register } from '../../store/actions/authActions'
 import Styles from '../style/Styles'
+import SubmitButton from '../style/SubmitButton'
 
 class Registration extends Component {
   state = {
@@ -46,7 +47,7 @@ class Registration extends Component {
             <input type="text" id='address' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className={Styles.button}>Register</button>
+            <SubmitButton formFieldsState={this.state}>Register</SubmitButton>
             <div className={Styles.error}>
               { authError ? <p>{authError}</p> : null }
             </div>
