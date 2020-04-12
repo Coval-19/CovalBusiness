@@ -3,19 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { createFirestoreInstance } from 'redux-firestore'
-import { ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import createReduxStore from './store/createReduxStore'
 import firebase from './firebase/fbConfig'
 
 const store = createReduxStore();
-
-function AuthIsLoaded({ children }) {
-  const auth = useSelector(state => state.firebase.auth)
-  if (!isLoaded(auth)) return <div>Loading...</div>;
-  return children
-}
 
 const rrfConfig = {
   userProfile: 'businesses',
@@ -34,9 +28,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
-        <AuthIsLoaded>
-          <App />
-        </AuthIsLoaded>
+        <App />
       </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,

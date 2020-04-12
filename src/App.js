@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import AuthIsReady from './firebase/AuthIsReady'
 import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/auth/Login'
 import Registration from './components/auth/Registration'
@@ -26,7 +27,9 @@ function App({ auth }) {
   return (
     <BrowserRouter>
       <div className="App">
-        {pagesSwitch}
+        <AuthIsReady>
+          {pagesSwitch}
+        </AuthIsReady>
       </div>
     </BrowserRouter>
   );
