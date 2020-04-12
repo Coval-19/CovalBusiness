@@ -33,7 +33,7 @@ class Navbar extends Component {
         <nav className="nav-wrapper grey darken-3">
           <div className="container">
             <Link to='/' className="brand-logo truncate">Coval Businesses</Link>
-            <a data-target="mobile-links" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a data-target="mobile-links" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <div className="right hide-on-med-and-down">
               <ul>
                 {links}
@@ -42,7 +42,7 @@ class Navbar extends Component {
           </div>
         </nav>
   
-        <ul class="sidenav" id="mobile-links">
+        <ul className="sidenav" id="mobile-links">
           {links}
         </ul>
       </React.Fragment>
