@@ -8,7 +8,7 @@ const LoggedInLinks = (props) => {
 
   return (
     <React.Fragment>
-      <li><a onClick={props.logout}>Logout</a></li>
+      <li><a href="!#" onClick={props.logout}>Logout</a></li>
       <li className="hide-on-med-and-down">
         <NavLink to='/' className="btn btn-floating blue">
           {businessNameFirstLetter}
