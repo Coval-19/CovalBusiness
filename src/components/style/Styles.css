@@ -1,3 +1,8 @@
 .error-message {
   font-weight: bold;
 }
+
+.app-nav-title {
+  position: static !important;
+  margin-left: 20px;
+}

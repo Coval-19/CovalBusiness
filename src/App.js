@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/auth/Login'
 import Registration from './components/auth/Registration'
 import Logout from './components/auth/Logout'
+import Navbar from './components/layout/navbar/Navbar'
 
 function App({ auth }) {
 
@@ -28,6 +29,7 @@ function App({ auth }) {
     <BrowserRouter>
       <div className="App">
         <AuthIsReady>
+          <Navbar />
           {pagesSwitch}
         </AuthIsReady>
       </div>
