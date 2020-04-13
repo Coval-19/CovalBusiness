@@ -8,4 +8,6 @@ const getDataFromStorage = (imagePath) => {
 
 export const getUserImagePromise = (userId) => getDataFromStorage(`/users/${userId}`)
 
+export const getTimestamp = () => firebase.firestore.Timestamp.now()
+
 export default firebase
