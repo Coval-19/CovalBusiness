@@ -26,8 +26,8 @@ class Login extends Component {
 
     return (
       <div className="container center">
-        <form className="white page-container" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Login</h5>
+        <form className="page-container" onSubmit={this.handleSubmit}>
+          <h5 className={Styles.pageTitle}>Login</h5>
           <div className="input-field">
             <label htmlFor="email">Email</label>
             <input type="email" id='email' onChange={this.handleChange} />
