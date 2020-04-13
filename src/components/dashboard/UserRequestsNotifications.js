@@ -12,7 +12,7 @@ const UserRequestsNotifications = (props) => {
     <div>
       <h5 className={Styles.pageTitle}>Entrance Requests</h5>
       <div className="container">
-        { notifications && notifications.map(notification => (
+        { notifications && notifications.map(notification => notification && (
           <UserRequestCard key={notification.userId} businessId={auth.uid} notification={notification}/>
         ))}
       </div>
