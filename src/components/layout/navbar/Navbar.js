@@ -30,7 +30,7 @@ class Navbar extends Component {
 
     return (
       <React.Fragment>
-        <nav className="nav-wrapper grey darken-3">
+        <nav className="navbar-container nav-wrapper">
           <div className="container">
             <Link to='/' className="brand-logo truncate">Coval Businesses</Link>
             <a href="!#" data-target="mobile-links" className="sidenav-trigger"><i className="material-icons">menu</i></a>
