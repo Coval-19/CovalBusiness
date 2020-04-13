@@ -1,6 +1,6 @@
 import {getTimestamp} from '../../firebase/firebaseUtils'
 
-export const sendResponse = (userId, businessId, isApproved) => {
+export const sendResponse = (userId, businessInfo, isApproved) => {
   return (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
     const firestore = firebase.firestore();
@@ -10,8 +10,8 @@ export const sendResponse = (userId, businessId, isApproved) => {
       .doc(userId)
       .collection('responses')
       .add({
+        ...businessInfo,
         timestamp: getTimestamp(),
-        businessId: businessId,
         isApproved: isApproved,
       }).then(() => {
         console.log('REQUEST_ANSWER_SUCCESS')

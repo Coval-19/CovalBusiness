@@ -5,10 +5,17 @@ import { sendResponse } from '../../store/actions/requestsActions'
 import UserImage from '../layout/UserImage'
 
 const UserRequestCard = (props) => {
-  const {notification, sendResponse} = props
+  const {notification, sendResponse, auth, profile} = props
 
-  const clickHandler = () => {
-    sendResponse(true)
+  console.log(auth, profile)
+
+  const clickHandler = (e) => {
+    e.preventDefault()
+    sendResponse({
+      businessId: auth.uid,
+      businessName: profile.name,
+      businessAddress: profile.address,
+    }, true)
   }
 
   return (
