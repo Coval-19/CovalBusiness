@@ -7,8 +7,12 @@ import UserImage from '../layout/UserImage'
 const UserRequestCard = (props) => {
   const {notification, sendResponse} = props
 
+  const clickHandler = () => {
+    sendResponse(true)
+  }
+
   return (
-    <div onClick={() => {sendResponse(true)}} className="card user-request-notification-card" style={{width: "20vw"}}>
+    <div className="card user-request-notification-card" onClick={clickHandler} style={{width: "20vw"}}>
       <div className="card-image">
         <UserImage className="left" userId={notification.userId} userName={notification.userName} />
       </div>
