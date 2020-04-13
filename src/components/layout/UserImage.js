@@ -4,7 +4,7 @@ import EmptyAvatar from '../../assets/images/empty_avatar.jpg'
 
 class UserImage extends Component {
   state = {
-    url: ''
+    url: EmptyAvatar
   }
 
   render() {
@@ -15,9 +15,7 @@ class UserImage extends Component {
         url: url
       })
     }).catch(error => {
-      this.setState({
-        url: EmptyAvatar
-      })
+      console.log(error)
     })
 
     return (
