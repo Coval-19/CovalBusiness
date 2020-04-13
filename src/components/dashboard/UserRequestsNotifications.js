@@ -6,14 +6,14 @@ import Styles from '../style/Styles'
 import UserRequestCard from './UserRequestCard'
 
 const UserRequestsNotifications = (props) => {
-  const { notifications } = props;
+  const { notifications, auth } = props;
 
   return (
     <div>
       <h5 className={Styles.pageTitle}>Entrance Requests</h5>
       <div className="container">
         { notifications && notifications.map(notification => (
-          <UserRequestCard key={notification.userId} notification={notification}/>
+          <UserRequestCard key={notification.userId} businessId={auth.uid} notification={notification}/>
         ))}
       </div>
     </div>
