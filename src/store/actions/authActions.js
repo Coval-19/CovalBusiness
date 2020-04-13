@@ -34,8 +34,8 @@ export const register = (newBusiness) => {
       newBusiness.password
     ).then(resp => {
       return firestore.collection('businesses').doc(resp.user.uid).set({
-        businessName: newBusiness.name,
-        businessAddress: newBusiness.address,
+        name: newBusiness.name,
+        address: newBusiness.address,
         // TODO: Add more new business info
       });
     }).then(() => {

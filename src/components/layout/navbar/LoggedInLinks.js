@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/authActions'
 
 const LoggedInLinks = (props) => {
-  const businessNameFirstLetter = props.profile.businessName?.[0]
+  const businessNameFirstLetter = props.profile.name?.[0]
 
   return (
     <React.Fragment>
