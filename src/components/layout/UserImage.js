@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { getUserImagePromise } from '../../firebase/firebaseUtils'
+import EmptyAvatar from '../../assets/images/empty_avatar.jpg'
 
 class UserImage extends Component {
   state = {
@@ -7,16 +8,20 @@ class UserImage extends Component {
   }
 
   render() {
-    const {userId} = this.props
+    const {userId, userName} = this.props
 
     getUserImagePromise(userId).then((url) => {
       this.setState({
         url: url
       })
+    }).catch(error => {
+      this.setState({
+        url: EmptyAvatar
+      })
     })
 
     return (
-      <img src={this.state.url} {...this.props}/>
+      <img src={this.state.url} alt={userName} {...this.props} />
     )
   }
 }
