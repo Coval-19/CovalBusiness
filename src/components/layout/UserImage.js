@@ -6,42 +6,26 @@ import EmptyAvatar from '../../assets/images/empty_avatar.jpg'
 class UserImage extends Component {
   state = {
     url: EmptyAvatar,
-    accessedFirestoreStorageOnce: false
   }
 
+  componentDidMount() {
+    const {userId} = this.props
+
+    getUserImagePromise(userId).then((url) => {
+      this.setState({
+        url: url,
+      })
+
+    }).catch(error => {
+      console.log(error)
+    })
+  }
 
   render() {
-    const {userId, userName} = this.props
-
-    if (!this.state.accessedFirestoreStorageOnce) {
-      getUserImagePromise(userId).then((url) => {
-        this.setState({
-          url: url,
-          accessedFirestoreStorageOnce: true,
-        })
-
-      }).catch(error => {
-        console.log(error)
-        this.setState({
-          ...this.state,
-          accessedFirestoreStorageOnce: true,
-        })
-      })
-    }
+    const {userName} = this.props
 
     return (
-      <img className="user-profile-image" src={this.state.url} alt={userName} {...this.props} />
-      // <MediaBox
-      //   options={{
-      //     inDuration: 275,
-      //     onCloseEnd: null,
-      //     onCloseStart: null,
-      //     onOpenEnd: null,
-      //     onOpenStart: null,
-      //     outDuration: 200
-      //   }}
-      // >
-      // </MediaBox>
+      <img className="user-profile-image" src={this.state.url} alt={userName} />
     )
   }
 }
