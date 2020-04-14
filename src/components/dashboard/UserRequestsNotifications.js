@@ -42,8 +42,8 @@ class UserRequestsNotifications extends Component {
 const mapStateToProps = (state) => {
   let notifications = state.firestore.ordered.notifications
 
+  // Removes newer notifications from the same user
   notifications = notifications && notifications
-    // Removes newer notifications from the same user
     .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), [])
 
   return {
