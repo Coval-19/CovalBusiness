@@ -42,6 +42,7 @@ code {
   border-radius: 20px;
   padding: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
   box-shadow: 2px 2px 6px black;
 
   background-color: #f0f0f0;
@@ -63,4 +64,24 @@ code {
   width: var(--user-profile-image-size) ;
   height: var(--user-profile-image-size) ;
   object-fit: cover;
+}
+
+/* Fixed navbar */
+.navbar-fixed-top {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* No scroll bar */
+body {
+  padding-top: 64px;
+  scroll-behavior: auto;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

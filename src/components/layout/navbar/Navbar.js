@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 class Navbar extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     var elem = $(".sidenav");
 
     M.Sidenav.init(elem, {
@@ -30,7 +30,7 @@ class Navbar extends Component {
 
     return (
       <React.Fragment>
-        <nav className="navbar-container nav-wrapper">
+        <nav className="navbar navbar-fixed-top navbar-container nav-wrapper">
           <div className="container">
             <Link to='/' className="brand-logo truncate">Coval Businesses</Link>
             <a href="!#" data-target="mobile-links" className="sidenav-trigger"><i className="material-icons">menu</i></a>
