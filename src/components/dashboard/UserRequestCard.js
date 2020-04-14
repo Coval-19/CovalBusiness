@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { sendResponse } from '../../store/actions/requestsActions'
+import { sendResponse, removeNotification, removeNotificationsByUser } from '../../store/actions/requestsActions'
 import UserImage from '../layout/UserImage'
 
 const UserRequestCard = (props) => {
-  const {notification, sendResponse, auth, profile} = props
+  const {notification, sendResponse, removeNotificationsByUser, auth, profile} = props
 
   const clickHandler = (e) => {
     e.preventDefault()
@@ -14,6 +14,7 @@ const UserRequestCard = (props) => {
       businessName: profile.name,
       businessAddress: profile.address,
     }, true)
+    removeNotificationsByUser(auth.uid)
   }
 
   return (
@@ -48,7 +49,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     sendResponse: (businessInfo, isApproved) => dispatch(sendResponse(
-      notification.userId, businessInfo, isApproved))
+      notification.userId, businessInfo, isApproved)),
+    removeNotification: (businessId) => dispatch(removeNotification(businessId, notification.id)),
+    removeNotificationsByUser: (businessId) => dispatch(removeNotificationsByUser(businessId, notification.userId))
   }
 }
 
