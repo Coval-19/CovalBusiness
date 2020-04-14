@@ -11,11 +11,13 @@ const UserRequestsNotifications = (props) => {
   const isValidNotification = notification => notification && Object.values(notification).reduce((a, b) => a && b)
 
   const userCards = notifications && notifications
-    .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), []) // This line removes newer notifications from the same user
+    // Removes newer notifications from the same user
+    .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), []) 
+    // Maps to jsx elements
     .map(notification => isValidNotification(notification) && (
       <UserRequestCard key={notification.id} businessId={auth.uid} notification={notification}/>
     ))
-    
+
   return (
     <div>
       <h5 className={Styles.pageTitle}>Pending Requests</h5>
