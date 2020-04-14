@@ -5,7 +5,6 @@ import { compose } from 'redux'
 import UserRequestsNotifications from './UserRequestsNotifications'
 
 const Dashboard = (props) => {
-  // console.log(props)
 
   return (
     <div className="dashboard container page-container">

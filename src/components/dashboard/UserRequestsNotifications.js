@@ -8,12 +8,14 @@ import UserRequestCard from './UserRequestCard'
 const UserRequestsNotifications = (props) => {
   const { notifications, auth } = props;
 
+  const isValidNotification = notification => notification && Object.values(notification).reduce((a, b) => a && b)
+
   return (
     <div>
-      <h5 className={Styles.pageTitle}>Entrance Requests</h5>
-      <div className="container">
-        { notifications && notifications.map(notification => notification && (
-          <UserRequestCard key={notification.userId} businessId={auth.uid} notification={notification}/>
+      <h5 className={Styles.pageTitle}>Pending Requests</h5>
+      <div className="container row">
+        { notifications && notifications.map(notification => isValidNotification(notification) && (
+          <UserRequestCard key={notification.id} businessId={auth.uid} notification={notification}/>
         ))}
       </div>
     </div>
@@ -24,7 +26,6 @@ const mapStateToProps = (state) => {
   return {
     notifications: state.firestore.ordered.notifications,
     auth: state.firebase.auth,
-    profile: state.firebase.profile,
   }
 }
 
@@ -35,7 +36,7 @@ export default compose(
       collection: 'businesses',
       doc: props.auth.uid, //businessId
       subcollections: [
-        { collection: 'notifications', orderBy: ['timestamp', 'desc'], limit: 50 } // TODO: Choose limit for notifications
+        { collection: 'notifications', orderBy: ['timestamp'], limit: 50 } // TODO: Choose limit for notifications
       ],
       storeAs: 'notifications'
     }]

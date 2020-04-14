@@ -7,8 +7,6 @@ import UserImage from '../layout/UserImage'
 const UserRequestCard = (props) => {
   const {notification, sendResponse, auth, profile} = props
 
-  console.log(auth, profile)
-
   const clickHandler = (e) => {
     e.preventDefault()
     sendResponse({
