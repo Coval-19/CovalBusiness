@@ -32,13 +32,21 @@ const UserRequestCard = (props) => {
       </div>
       <div className="card-stacked">
         <div className="card-content">
-          <span className="card-title">{notification.userName}</span>
-          <div className="pink-text">ID: {notification.socialNumber}</div>
-          <span>{notification.isUserCoronaFree ? 'Corona Free' : 'Not Free'}</span>
+          <span className="card-title"><b>{notification.userName}</b></span>
+          <div>ID: <span className="pink-text">{notification.socialNumber}</span></div>
+          <span>
+            {
+              notification.isUserCoronaFree ? (
+                <span className="green-text">Corona Free</span>
+              ) : (
+                <span className="red-text">Not Corona Free</span>
+              )
+            }
+          </span>
           <div className="note-date grey-text">{moment(notification.timestamp.toDate()).fromNow()}</div>
         </div>
         <div className="card-action">
-          <a href="!#" onClick={clickHandler}>Approve</a>
+          <a className="green-text" href="!#" onClick={clickHandler}><b>Approve</b></a>
         </div>
       </div>
     </div>

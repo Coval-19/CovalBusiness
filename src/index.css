@@ -59,7 +59,7 @@ code {
 }
 
 .card.horizontal .card-image img.user-profile-image {
-  --user-profile-image-size: 250px;
+  --user-profile-image-size: 220px;
 
   width: var(--user-profile-image-size) ;
   height: var(--user-profile-image-size) ;
