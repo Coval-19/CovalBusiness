@@ -29,7 +29,10 @@ class UserImage extends Component {
     const {userName} = this.props
 
     return (
-      <img className="user-profile-image materialboxed" src={this.state.url} alt={userName} />
+      <div className="user-profile-image-container">
+        <img className="user-profile-image materialboxed hide-on-med-and-down" src={this.state.url} alt={userName} />
+        <img className="materialboxed hide-on-large-only" src={this.state.url} alt={userName} />
+      </div>
     )
   }
 }
