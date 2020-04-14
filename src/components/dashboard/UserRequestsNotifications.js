@@ -1,36 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import Styles from '../style/Styles'
 import UserRequestCard from './UserRequestCard'
+import { makeToast } from '../layout/makeToast'
 
-const UserRequestsNotifications = (props) => {
-  const { notifications, auth } = props;
+class UserRequestsNotifications extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (!(prevProps?.notifications && this?.props?.notifications)) {
+      return
+    }
 
-  const isValidNotification = notification => notification && Object.values(notification).reduce((a, b) => a && b)
+    if (prevProps.notifications.length < this.props.notifications.length) {
+      const newNotification = this.props.notifications[this.props.notifications.length - 1]
+      makeToast(`New request from ${newNotification.userName}`)
+    }
+  }
 
-  const userCards = notifications && notifications
-    // Removes newer notifications from the same user
-    .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), []) 
-    // Maps to jsx elements
-    .map(notification => isValidNotification(notification) && (
-      <UserRequestCard key={notification.id} businessId={auth.uid} notification={notification}/>
-    ))
+  render() {
+    const { notifications, auth } = this.props;
+  
+    const isValidNotification = notification => notification && Object.values(notification).reduce((a, b) => a && b)
+  
+    const userCards = notifications && notifications
+      .map(notification => isValidNotification(notification) && (
+        <UserRequestCard key={notification.id} businessId={auth.uid} notification={notification}/>
+      ))
 
-  return (
-    <div>
-      <h5 className={Styles.pageTitle}>Pending Requests</h5>
-      <div className="container">
-        {userCards}
+    return (
+      <div>
+        <h5 className={Styles.pageTitle}>Pending Requests</h5>
+        <div className="container">
+          {userCards}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
+  let notifications = state.firestore.ordered.notifications
+
+  notifications = notifications && notifications
+    // Removes newer notifications from the same user
+    .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), [])
+
   return {
-    notifications: state.firestore.ordered.notifications,
+    notifications: notifications,
     auth: state.firebase.auth,
   }
 }
