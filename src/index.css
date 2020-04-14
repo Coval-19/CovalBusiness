@@ -57,10 +57,10 @@ code {
   /* background: linear-gradient(-90deg, rgba(31,31,31,1) 0%, rgb(138, 108, 0) 100%);; */
 }
 
-.user-profile-image {
+.card.horizontal .card-image img.user-profile-image {
   --user-profile-image-size: 250px;
 
-  width: var(--user-profile-image-size) !important;
-  height: var(--user-profile-image-size) !important;
+  width: var(--user-profile-image-size) ;
+  height: var(--user-profile-image-size) ;
   object-fit: cover;
 }
