@@ -9,16 +9,24 @@ const UserRequestCard = (props) => {
 
   const clickHandler = (e) => {
     e.preventDefault()
-    sendResponse({
-      businessId: auth.uid,
-      businessName: profile.name,
-      businessAddress: profile.address,
-    }, true)
-    removeNotificationsByUser(auth.uid)
+    const card = document.getElementById(notification.id)
+
+    card.setAttribute('class', card.className + ' scale-out')
+    
+    setTimeout(() => {
+      card.setAttribute('style', 'display: none;')
+      sendResponse({
+        businessId: auth.uid,
+        businessName: profile.name,
+        businessAddress: profile.address,
+      }, true)
+      removeNotificationsByUser(auth.uid)
+    }, 200)
   }
 
   return (
-    <div className="card horizontal user-request-notification-card">
+    <div id={notification.id} className="card horizontal user-request-notification-card scale-transition" onClick={(e)=>{
+    }}>
       <div className="card-image">
         <UserImage userId={notification.userId} userName={notification.userName} />
       </div>
