@@ -1,59 +1,41 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getBusinessImagePromise, uploadBusinessImagePromise } from '../../firebase/firebaseUtils'
+import { uploadImage, getImage } from '../../store/actions/profileAction'
+
+function buildFileSelector() {
+  const fileSelector = document.createElement('input');
+  fileSelector.setAttribute('type', 'file');
+  return fileSelector;
+}
 
 class ProfileImage extends Component {
   state = {
     imageAsFile: '',
-    imageUrl: '',
     error: '',
 
     hover: false,
   }
-
-  getPhoto = () => {
-    return getBusinessImagePromise(this.props.auth.uid)
-      .then(url => {
-        this.setState({
-          imageUrl: url
-        })
-      })
-  }
-
-  uploadPhoto = () => {
-    return uploadBusinessImagePromise(this.state.imageAsFile, this.props.auth.uid)
-      .then(this.getPhoto)
-      .then(() => {
-        this.setState({
-          imageAsFile: ''
-        })
-      })
-      .catch(error => this.setState({
-        error
-      }))
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.uploadPhoto()
-  }
-
+  
   componentDidMount() {
-    this.getPhoto()
-      .catch(error => this.setState({
-        error
-      }))
+    this.fileSelector = buildFileSelector()
+    this.fileSelector.onchange = this.changeHandler
+
+    this.props.getImage(this.props.auth.uid)
+  }
+
+  clickHandler = (e) => {
+    if (this.props.allowUpload) {
+      e.preventDefault()
+      this.fileSelector.click()
+    }
+  }
+
+  changeHandler = (e) => {
+    this.props.uploadImage(e.target.files[0], this.props.auth.uid)
   }
 
   toggleHover = () => {
-    const { allowUpload } = this.props
-    if (allowUpload) {
+    if (this.props.allowUpload) {
       this.setState({hover: !this.state.hover})
     }
   }
@@ -61,7 +43,7 @@ class ProfileImage extends Component {
   render() {
     const { allowUpload, size } = this.props
     const showUploadOption = allowUpload && this.state.hover
-    const imageUrl = this.state.imageUrl
+    const imageUrl = this.props.profileImage.url
 
     const businessName = this.props.profile.name
     const businessNameFirstLetter = this.props.profile.name?.[0]
@@ -69,14 +51,14 @@ class ProfileImage extends Component {
 
     const darkerStyle = showUploadOption ? {filter: "brightness(50%)"} : {}
     
-    const image = !this.state.imageUrl ? (
-      <img className="img-responsive" alt='' src={imageUrl} style={darkerStyle} />
+    const image = imageUrl ? (
+      <img htmlFor="upload-button" className="img-responsive" alt='' src={imageUrl} style={darkerStyle} />
     ) : !showUploadOption && (
-      <div className="text-on-image">{text}</div>
+      <div htmlFor="upload-button" className="text-on-image">{text}</div>
     )
     
     const containerStyle = {width: size, height: size}
-    let containerClassName = "btn btn-floating circle-image-container blue"
+    let containerClassName = "btn btn-floating circle-image-container blue-grey"
     if (showUploadOption) {
       containerClassName += " darken-4"
     }
@@ -86,6 +68,7 @@ class ProfileImage extends Component {
     return (
       <div className={containerClassName}
         style={containerStyle}
+        onClick={this.clickHandler}
         onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
         {image}
         {uploadText}
@@ -97,8 +80,16 @@ class ProfileImage extends Component {
 const mapStateToProps = (state) => {
   return{
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    profile: state.firebase.profile,
+    profileImage: state.profile,
   }
 }
 
-export default connect(mapStateToProps)(ProfileImage)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uploadImage: (imageAsFile, businessId) => dispatch(uploadImage(imageAsFile, businessId)),
+    getImage: (businessId) => dispatch(getImage(businessId)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileImage)
