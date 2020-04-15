@@ -4,8 +4,10 @@ import ProfileForm from './ProfileForm'
 
 const ProfilePage = (props) => {
   return (
-    <div className="profile-page container page-container" style={{display: "flex", flexDirection: "row", justifyContent: "flex-start"}}>
-      <ProfileImage size="15em" allowUpload={true} />
+    <div className="profile-page container page-container center">
+      <div className="center">
+        <ProfileImage size="15em" allowUpload={true} />
+      </div>
       <div className="profile-details">
         <ProfileForm />
       </div>

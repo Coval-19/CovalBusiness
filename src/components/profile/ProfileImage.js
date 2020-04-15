@@ -58,7 +58,7 @@ class ProfileImage extends Component {
     )
     
     const containerStyle = {width: size, height: size}
-    let containerClassName = "btn btn-floating circle-image-container blue-grey"
+    let containerClassName =  "btn btn-floating circle-image-container blue-grey"
     if (showUploadOption) {
       containerClassName += " darken-4"
     }
