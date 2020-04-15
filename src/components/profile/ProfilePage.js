@@ -5,7 +5,7 @@ const ProfilePage = (props) => {
   return (
     <div className="profile-page container page-container">
       <div className="center">
-        <ProfileImage size="15em" />
+        <ProfileImage size="15em" allowUpload={true} />
       </div>
     </div>
   )

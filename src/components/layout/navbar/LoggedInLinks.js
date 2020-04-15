@@ -5,8 +5,6 @@ import { logout } from '../../../store/actions/authActions'
 import ProfileImage from '../../profile/ProfileImage'
 
 const LoggedInLinks = (props) => {
-  const businessNameFirstLetter = props.profile.name?.[0]
-
   return (
     <React.Fragment>
       <li><NavLink to='/profile'>Profile</NavLink></li>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getBusinessImagePromise, uploadBusinessImagePromise } from '../../firebase/firebaseUtils'
-import EmptyAvatar from '../../assets/images/empty_avatar.jpg'
 
 class ProfileImage extends Component {
   state = {
     imageAsFile: '',
     imageUrl: '',
     error: '',
+
+    hover: false,
   }
 
   getPhoto = () => {
@@ -50,61 +51,44 @@ class ProfileImage extends Component {
       }))
   }
 
+  toggleHover = () => {
+    const { allowUpload } = this.props
+    if (allowUpload) {
+      this.setState({hover: !this.state.hover})
+    }
+  }
+
   render() {
     const { allowUpload, size } = this.props
+    const showUploadOption = allowUpload && this.state.hover
+    const imageUrl = this.state.imageUrl
+
+    const businessName = this.props.profile.name
     const businessNameFirstLetter = this.props.profile.name?.[0]
+    const text = size ? businessName : businessNameFirstLetter
 
-    // const button = allowUpload ? (
-    //   className="btn btn-floating blue"
-    // ) : (
-
-    // )
-
-    const imageUrl = this.state.imageUrl ? this.state.imageUrl : EmptyAvatar
-
-    // const size = "15em"
-    // const size = "100%"
-    // const style = {width: size, height: size}
-    const style = {width: size, height: size}
-
-    // const image = this.state.imageUrl ? (
-    //   <>
-    //   <div className="circle-image-container">
-    //     <img className="btn btn-floating img-responsive circle waves-effect waves-light" src={imageUrl} style={style} />
-    //     {/* <div className="text-on-image ">HI</div> */}
-    //   </div>
-    //   {/* <div className="circle-image-container">
-    //     <div className="btn btn-floating img-responsive circle waves-effect waves-light blue" style={style}>
-    //       <div className="text-on-image ">HI</div>
-    //     </div>
-    //   </div> */}
-    //   </>
-    // ) : (
-    //   <div className="circle-image-container">
-    //     <div className="btn btn-floating img-responsive circle waves-effect waves-light blue" style={style}>
-    //     <div className="text-on-image ">HI</div>
-
-    //     </div>
-    //     {/* <div className="text-on-image ">{businessNameFirstLetter}</div> */}
-    //   </div>
-    // )
-      
-    const image = (
-      <a>
-        <div className="btn btn-floating circle-image-container blue" style={style}>
-          <img className="img-responsive" src={imageUrl} />
-          <div className="text-on-image ">HI</div>
-        </div>
-      </a>
+    const darkerStyle = showUploadOption ? {filter: "brightness(50%)"} : {}
+    
+    const image = this.state.imageUrl ? (
+      <img className="img-responsive" alt={businessName} src={imageUrl} style={darkerStyle} />
+    ) : !showUploadOption && (
+      <div className="text-on-image">{text}</div>
     )
+    
+    const containerStyle = {width: size, height: size}
+    let containerClassName = "btn btn-floating circle-image-container blue"
+    if (showUploadOption) {
+      containerClassName += " darken-4"
+    }
 
-    return image
+    const uploadText = showUploadOption && (<div className="text-on-image">Upload image</div>)
 
     return (
-      <div className="center">
-        {/* <div className="btn btn-floating"> */}
-          {image}
-        {/* </div> */}
+      <div className={containerClassName}
+        style={containerStyle}
+        onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+        {image}
+        {uploadText}
       </div>
     )
   }
@@ -116,6 +100,5 @@ const mapStateToProps = (state) => {
     profile: state.firebase.profile
   }
 }
-
 
 export default connect(mapStateToProps)(ProfileImage)
