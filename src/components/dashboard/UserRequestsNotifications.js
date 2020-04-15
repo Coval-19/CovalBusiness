@@ -62,9 +62,12 @@ class UserRequestsNotifications extends Component {
 const mapStateToProps = (state) => {
   let notifications = state.firestore.ordered.notifications
 
-  // Removes newer notifications from the same user
+  // Removes newer notifications from the same user and sort
   notifications = notifications && notifications
     .reduce((a, b) => (a.map(n => n.userId).includes(b.userId) ? a : [...a, b]), [])
+    // TODO: enable this
+    // .filter(n => Date.now() - n.timestamp.toDate().getTime() < 30 * 60 * 1000) // Only notifications from 30 min ago
+    .sort((a, b) => a.timestamp - b.timestamp)
 
   return {
     notifications: notifications,
