@@ -69,8 +69,8 @@ class ProfileImage extends Component {
 
     const darkerStyle = showUploadOption ? {filter: "brightness(50%)"} : {}
     
-    const image = this.state.imageUrl ? (
-      <img className="img-responsive" alt={businessName} src={imageUrl} style={darkerStyle} />
+    const image = !this.state.imageUrl ? (
+      <img className="img-responsive" alt='' src={imageUrl} style={darkerStyle} />
     ) : !showUploadOption && (
       <div className="text-on-image">{text}</div>
     )

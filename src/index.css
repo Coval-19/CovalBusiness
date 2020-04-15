@@ -101,6 +101,10 @@ body::-webkit-scrollbar {
   max-height: 100%;
 }
 
+.circle-image-container:hover {
+  box-shadow: 1px 1px 3px black;
+}
+
 .text-on-image {
   position: absolute;
   top: 50%;
