@@ -2,16 +2,18 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../../store/actions/authActions'
+import ProfileImage from '../../profile/ProfileImage'
 
 const LoggedInLinks = (props) => {
   const businessNameFirstLetter = props.profile.name?.[0]
 
   return (
     <React.Fragment>
+      <li><NavLink to='/profile'>Profile</NavLink></li>
       <li><a href="!#" onClick={props.logout}>Logout</a></li>
       <li className="hide-on-med-and-down">
-        <NavLink to='/' className="btn btn-floating blue">
-          {businessNameFirstLetter}
+        <NavLink to='/profile'>
+          <ProfileImage />
         </NavLink>
       </li>
     </React.Fragment>

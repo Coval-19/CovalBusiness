@@ -5,6 +5,7 @@ import AuthIsReady from './firebase/AuthIsReady'
 import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/auth/Login'
 import Registration from './components/auth/Registration'
+import ProfilePage from './components/profile/ProfilePage'
 import Navbar from './components/layout/navbar/Navbar'
 
 function App({ auth }) {
@@ -12,6 +13,7 @@ function App({ auth }) {
   const pagesSwitch = auth.uid ? (
     <Switch>
       <Route exact path='/' component={Dashboard} />
+      <Route path='/profile' component={ProfilePage} />
       <Route path = '/' component={() => (<Redirect to='/' />)} />
     </Switch>
   ) : (
