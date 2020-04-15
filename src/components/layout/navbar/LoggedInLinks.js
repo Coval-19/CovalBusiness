@@ -7,6 +7,7 @@ import ProfileImage from '../../profile/ProfileImage'
 const LoggedInLinks = (props) => {
   return (
     <React.Fragment>
+      <li><NavLink to='/Dashboard'>Dashboard</NavLink></li>
       <li><NavLink to='/profile'>Profile</NavLink></li>
       <li><a href="!#" onClick={props.logout}>Logout</a></li>
       <li className="hide-on-med-and-down">
