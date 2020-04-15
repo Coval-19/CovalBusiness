@@ -1,5 +1,3 @@
-import { getBusinessImagePromise, uploadBusinessImagePromise } from '../../firebase/firebaseUtils'
-
 export const uploadImage = (imageAsFile, businessId) => {
   return (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
