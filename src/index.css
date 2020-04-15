@@ -1,8 +1,10 @@
 :root {
-  --coval-main-color: rgb(196, 150, 0);
+  /* --coval-main-color: rgb(196, 150, 0); */
+  --coval-main-color: #009ab0;
   /* --coval-main-color-dark: rgb(170, 130, 0); */
   /* --coval-main-color-dark: rgb(65, 59, 37); */
-  --coval-main-color-dark: rgb(138, 108, 0);
+  /* --coval-main-color-dark: rgb(138, 108, 0); */
+  --coval-main-color-dark: #009ab0;
 }
 
 html {
