@@ -36,7 +36,6 @@ export const register = (newBusiness) => {
       return firestore.collection('businesses').doc(resp.user.uid).set({
         name: newBusiness.name,
         address: newBusiness.address,
-        // TODO: Add more new business info
       });
     }).then(() => {
       dispatch({ type: 'REGISTRATION_SUCCESS' });

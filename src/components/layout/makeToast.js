@@ -1,4 +1,4 @@
-import M, { toast } from "materialize-css";
+import M from "materialize-css";
 
 export const makeToast = (toast) => {
   M.toast({html: toast, classes: 'rounded'})

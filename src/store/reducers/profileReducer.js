@@ -34,6 +34,20 @@ const profileReducer = (state = initState, action) => {
         error: action.err.message
       }
 
+    case 'UPDATE_PROFILE_SUCCESS':
+      console.log('get image error', action.err);
+      return {
+        ...state,
+        error: null,
+      }
+    
+    case 'UPDATE_PROFILE_ERROR':
+      console.log('get image error', action.err);
+      return {
+        ...state,
+        error: action.err.message
+      }
+
     default:
       return state
   }

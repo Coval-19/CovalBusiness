@@ -28,3 +28,19 @@ export const getImage = (businessId) => {
       })
   }
 }
+
+export const updateProfile = (businessId, profileInfo) => {
+  return (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase();
+    const firestore = firebase.firestore();
+
+    firestore.collection('businesses').doc(businessId)
+      .set(profileInfo)
+      .then(() => {
+        dispatch({ type: 'UPDATE_PROFILE_SUCCESS' });
+
+      }).catch((err) => {
+        dispatch({ type: 'UPDATE_PROFILE_ERROR', err});
+      });
+  }
+}

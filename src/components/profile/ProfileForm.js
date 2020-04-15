@@ -4,6 +4,7 @@ import $ from 'jquery'
 import M from "materialize-css";
 import Styles from '../style/Styles'
 import SubmitButton from '../layout/SubmitButton'
+import { updateProfile } from '../../store/actions/profileAction'
 
 class ProfileForm extends Component {
   state = {
@@ -20,6 +21,19 @@ class ProfileForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.updateProfile(this.props.auth.uid, this.state)
+  }
+
+  componentDidMount() {
+    this.setState(() => {
+      $('#description').val(this.props.profile.description);
+      M.textareaAutoResize($('#description'));
+      return {
+        name: this.props.profile.name,
+        address: this.props.profile.address,
+        description: this.props.profile.description,
+      }
+    })
   }
 
   componentDidUpdate(preProps, prevState) {
@@ -40,6 +54,8 @@ class ProfileForm extends Component {
 
   render() {
     const { profileChangeError } = this.props;
+
+    console.log(this.props.profile)
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -76,6 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    updateProfile: (businessId, profileInfo) => dispatch(updateProfile(businessId, profileInfo))
   }
 }
 
