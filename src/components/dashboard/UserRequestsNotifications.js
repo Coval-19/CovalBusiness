@@ -7,6 +7,10 @@ import UserRequestCard from './UserRequestCard'
 import { makeToast } from '../layout/makeToast'
 
 class UserRequestsNotifications extends Component {
+  state = {
+    filter: ''
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (!(prevProps?.notifications && this?.props?.notifications)) {
       return
@@ -18,12 +22,23 @@ class UserRequestsNotifications extends Component {
     }
   }
 
+  onFilterChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
   render() {
     const { notifications, auth } = this.props;
   
     const isValidNotification = notification => notification && Object.values(notification).reduce((a, b) => a && b)
   
     const userCards = notifications && notifications
+      .filter(n => {
+        const filter = this.state.filter.toLowerCase()
+        return !filter || 
+          n.userName.toLowerCase().includes(filter) || n.socialNumber.includes(filter)
+      })
       .map(notification => isValidNotification(notification) && (
         <UserRequestCard key={notification.id} businessId={auth.uid} notification={notification}/>
       ))
@@ -31,6 +46,11 @@ class UserRequestsNotifications extends Component {
     return (
       <div>
         <h5 className={Styles.pageTitle}>Pending Requests</h5>
+        <div class="input-field container">
+          <i class="material-icons prefix">filter_list</i>
+          <input type="text" id="filter" onChange={this.onFilterChange} />
+          <label htmlFor="filter">Filter</label>
+        </div>
         <div className="container">
           {userCards}
         </div>
@@ -59,7 +79,11 @@ export default compose(
       collection: 'businesses',
       doc: props.auth.uid, //businessId
       subcollections: [
-        { collection: 'notifications', orderBy: ['timestamp'], limit: 50 } // TODO: Choose limit for notifications
+        { 
+          collection: 'notifications', 
+          orderBy: ['timestamp', 'desc'], 
+          limit: 50,
+        } // TODO: Choose limit for notifications
       ],
       storeAs: 'notifications'
     }]
