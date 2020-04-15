@@ -15,7 +15,7 @@ const uploadImageToStore = (imageAsFile, target) => {
   return storage.child(target).put(imageAsFile)
 }
 
-export const uploadBusinessImagePromise = (imageAsFile, businessId) => uploadImageToStore(imageAsFile, `/bussinesses/${businessId}`)
+export const uploadBusinessImagePromise = (imageAsFile, businessId) => uploadImageToStore(imageAsFile, `/businesses/${businessId}`)
 
 
 export default firebase
