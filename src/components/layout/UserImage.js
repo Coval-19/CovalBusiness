@@ -26,12 +26,10 @@ class UserImage extends Component {
   }
 
   render() {
-    const {userName} = this.props
-
     return (
       <div className="user-profile-image-container">
-        <img className="user-profile-image materialboxed hide-on-med-and-down" src={this.state.url} alt={userName} />
-        <img className="materialboxed hide-on-large-only" src={this.state.url} alt={userName} />
+        <img className="user-profile-image materialboxed hide-on-med-and-down" src={this.state.url} alt='' />
+        <img className="materialboxed hide-on-large-only" src={this.state.url} alt='' />
       </div>
     )
   }
