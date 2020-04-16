@@ -60,11 +60,19 @@ code {
   /* background: linear-gradient(-90deg, rgba(31,31,31,1) 0%, rgb(138, 108, 0) 100%);; */
 }
 
-.card.horizontal .card-image img.user-profile-image {
+.user-profile-image-container {
   --user-profile-image-size: 220px;
+  
+  max-width: var(--user-profile-image-size) ;
+  max-height: var(--user-profile-image-size) ;
 
-  width: var(--user-profile-image-size) ;
-  height: var(--user-profile-image-size) ;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+
+.card.horizontal .card-image img.user-profile-image {
   object-fit: cover;
 }
 
