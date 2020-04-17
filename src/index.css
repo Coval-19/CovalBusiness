@@ -145,3 +145,14 @@ body::-webkit-scrollbar {
 .sidenav a {
   color: white !important;
 }
+
+.navbar-icon-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar-icon {
+  width: 50px;
+  margin-right: 0.2em;
+}

@@ -6,6 +6,7 @@ import LoggedInLinks from './LoggedInLinks'
 import LoggedOutLinks from './LoggedOutLinks'
 import { connect } from 'react-redux'
 import ProfileImage from '../../profile/ProfileImage'
+import Icon from '../../../assets/images/icon512.png'
 
 class Navbar extends Component {
 
@@ -41,11 +42,21 @@ class Navbar extends Component {
       </li>
     )
 
+    const Title = "Coval Businesses"
+
     return (
       <React.Fragment>
         <nav className="navbar navbar-fixed-top navbar-container nav-wrapper">
           <div className="container">
-            <Link to='/' className="brand-logo truncate">Coval Businesses</Link>
+            <Link to='/' className="brand-logo truncate">
+              <div className="navbar-icon-title hide-on-small-only">
+                <img className="navbar-icon" src={Icon} alt="" />
+                {Title}
+              </div>
+              <div className="hide-on-med-and-up">
+                {Title}
+              </div>
+            </Link>
             <a href="!#" data-target="mobile-links" className="sidenav-trigger"><i className="material-icons">menu</i></a>
             <div className="right hide-on-med-and-down">
               <ul>
