@@ -46,8 +46,8 @@ class UserRequestsNotifications extends Component {
     return (
       <div>
         <h5 className={Styles.pageTitle}>Pending Requests</h5>
-        <div class="input-field container">
-          <i class="material-icons prefix">filter_list</i>
+        <div className="input-field container">
+          <i className="material-icons prefix">filter_list</i>
           <input type="text" id="filter" onChange={this.onFilterChange} />
           <label htmlFor="filter">Filter</label>
         </div>
