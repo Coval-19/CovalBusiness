@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import $ from 'jquery'
-import M from "materialize-css";
 import Styles from '../style/Styles'
 import SubmitButton from '../layout/SubmitButton'
 import { updateProfile } from '../../store/actions/profileAction'
@@ -27,7 +26,7 @@ class ProfileForm extends Component {
   componentDidMount() {
     this.setState(() => {
       $('#description').val(this.props.profile.description);
-      M.textareaAutoResize($('#description'));
+      window.M.textareaAutoResize($('#description'));
       return {
         name: this.props.profile.name,
         address: this.props.profile.address,
@@ -43,7 +42,7 @@ class ProfileForm extends Component {
 
     this.setState(() => {
       $('#description').val(this.props.profile.description);
-      M.textareaAutoResize($('#description'));
+      window.M.textareaAutoResize($('#description'));
       return {
         name: this.props.profile.name,
         address: this.props.profile.address,

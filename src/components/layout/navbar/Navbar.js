@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import M from "materialize-css";
 import { Link } from 'react-router-dom'
 import LoggedInLinks from './LoggedInLinks'
 import LoggedOutLinks from './LoggedOutLinks'
@@ -13,12 +12,12 @@ class Navbar extends Component {
   componentDidMount() {
     var elem = $(".sidenav");
 
-    M.Sidenav.init(elem, {
+    window.M.Sidenav.init(elem, {
       edge: "left",
       inDuration: 250
     });
 
-    var instance = M.Sidenav.getInstance(elem)
+    var instance = window.M.Sidenav.getInstance(elem)
 
     $('.sidenav').click(function() {
       instance.close();

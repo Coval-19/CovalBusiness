@@ -1,7 +1,5 @@
-import M from "materialize-css";
-
 export const makeToast = (toast) => {
-  M.toast({html: toast, classes: 'rounded'})
+  window.M.toast({html: toast, classes: 'rounded'})
 }
 
 export const makeToastWithGoToButton = (toast, gotoUrl) => {

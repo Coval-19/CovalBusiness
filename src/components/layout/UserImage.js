@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import M from "materialize-css";
 import { getUserImagePromise } from '../../firebase/firebaseUtils'
 import EmptyAvatar from '../../assets/images/empty_avatar.jpg'
 
@@ -11,7 +10,7 @@ class UserImage extends Component {
 
   componentDidMount() {
     var elems = $('.materialboxed');
-    M.Materialbox.init(elems, {});
+    window.M.Materialbox.init(elems, {});
 
     const {userId} = this.props
 
