@@ -24,14 +24,16 @@ class ProfileForm extends Component {
   }
 
   componentDidMount() {
+    this.initialState = {
+      name: this.props.profile.name,
+      address: this.props.profile.address,
+      description: this.props.profile.description,
+    }
+
     this.setState(() => {
       $('#description').val(this.props.profile.description);
       window.M.textareaAutoResize($('#description'));
-      return {
-        name: this.props.profile.name,
-        address: this.props.profile.address,
-        description: this.props.profile.description,
-      }
+      return this.initialState
     })
   }
 
@@ -40,21 +42,21 @@ class ProfileForm extends Component {
       return
     }
 
+    this.initialState = {
+      name: this.props.profile.name,
+      address: this.props.profile.address,
+      description: this.props.profile.description,
+    }
+
     this.setState(() => {
       $('#description').val(this.props.profile.description);
       window.M.textareaAutoResize($('#description'));
-      return {
-        name: this.props.profile.name,
-        address: this.props.profile.address,
-        description: this.props.profile.description,
-      }
+      return this.initialState
     })
   }
 
   render() {
     const { profileChangeError } = this.props;
-
-    console.log(this.props.profile)
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -71,7 +73,7 @@ class ProfileForm extends Component {
           <textarea className="materialize-textarea" id='description' value={this.state.description} onChange={this.handleChange} />
         </div>
         <div className="input-field">
-          <SubmitButton formFieldsState={this.state}>Save</SubmitButton>
+          <SubmitButton formFieldsState={this.state} initialFormFieldsState={this.initialState}>Save</SubmitButton>
           <div className={Styles.error}>
             { profileChangeError ? <p>{profileChangeError}</p> : null }
           </div>
